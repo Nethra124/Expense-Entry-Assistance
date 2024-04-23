@@ -1,0 +1,458 @@
+<head>
+    <title>Expense Entry Tracker - Login</title>
+    <link rel="stylesheet" href="static\assets\vendors\feather\feather.css">
+    <link rel="stylesheet" href="static\assets\vendors\mdi\css\materialdesignicons.min.css">
+    <link rel="stylesheet" href="static\assets\vendors\mdi\css\materialdesignicons.min.css">
+    <link rel="stylesheet" href="static\assets\vendors\ti-icons\css\themify-icons.css">
+    <link rel="stylesheet" href="static\assets\vendors\typicons\typicons.css">
+    <link rel="stylesheet" href="static\assets\vendors\simple-line-icons\css\simple-line-icons.css">
+    <link rel="stylesheet" href="static\assets\vendors\css\vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="static\assets\vendors\datatables.net-bs4\dataTables.bootstrap4.css">
+    <link rel="stylesheet" type="text/css" href="static\assets\js\select.dataTables.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="static\assets\css\vertical-layout-light\style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="static\assets\images\main_logo.png" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+html,
+body {
+    margin: 0;
+    padding: 0;
+    color: black;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+.nav {
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    line-height: 65px;
+    background-color: #b7b7b8;
+    text-align: center;
+}
+
+.nav div.logo {
+    float: left;
+    width: auto;
+    height: auto;
+    margin-left: -5rem;
+}
+
+.nav div.logo a {
+    text-decoration: none;
+    color: black;
+    font-size: 0.1rem;
+}
+
+.nav div.logo a:hover {
+    text-decoration: underline;
+    transition: all 0.3s ease;
+}
+
+.nav div.main_list {
+    height: 65px;
+    float: right;
+    margin-top: -0.7rem;
+    margin-right: -5rem;
+}
+
+.nav div.main_list ul {
+    width: 100%;
+    height: 65px;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav div.main_list ul li {
+    width: auto;
+    height: 65px;
+    padding: 0;
+    padding-right: 3rem;
+}
+
+.nav div.main_list ul li a {
+    text-decoration: none;
+    color: #000;
+    line-height: 65px;
+    font-size: 1.3rem;
+}
+
+.nav div.main_list ul li a:hover {
+    text-decoration: underline;
+    transition: all 0.3s ease;
+}
+.home {
+    width: 100%;
+    height: 100vh;
+}
+
+.navTrigger {
+    display: none;
+}
+
+.nav {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .navTrigger {
+        display: block;
+    }
+    .nav div.logo {
+        margin-left: 15px;
+    }
+    .nav div.main_list {
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+    }
+    .nav div.show_list {
+        height: auto;
+        display: none;
+    }
+    .nav div.main_list ul {
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-color: #111;
+        background-position: center top;
+    }
+    .nav div.main_list ul li {
+        width: 100%;
+        text-align: right;
+    }
+    .nav div.main_list ul li a {
+        text-align: center;
+        width: 100%;
+        font-size: 3rem;
+        padding: 20px;
+    }
+    .nav div.media_button {
+        display: block;
+    }
+}
+.navTrigger {
+    cursor: pointer;
+    width: 30px;
+    height: 25px;
+    margin: auto;
+    position: absolute;
+    right: 30px;
+    top: 0;
+    bottom: 0;
+}
+
+.navTrigger i {
+    background-color: #000;
+    border-radius: 2px;
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+}
+
+.navTrigger i:nth-child(1) {
+    -webkit-animation: outT 0.8s backwards;
+    animation: outT 0.8s backwards;
+    -webkit-animation-direction: reverse;
+    animation-direction: reverse;
+}
+
+.navTrigger i:nth-child(2) {
+    margin: 5px 0;
+    -webkit-animation: outM 0.8s backwards;
+    animation: outM 0.8s backwards;
+    -webkit-animation-direction: reverse;
+    animation-direction: reverse;
+}
+
+.navTrigger i:nth-child(3) {
+    -webkit-animation: outBtm 0.8s backwards;
+    animation: outBtm 0.8s backwards;
+    -webkit-animation-direction: reverse;
+    animation-direction: reverse;
+}
+
+.navTrigger.active i:nth-child(1) {
+    -webkit-animation: inT 0.8s forwards;
+    animation: inT 0.8s forwards;
+}
+
+.navTrigger.active i:nth-child(2) {
+    -webkit-animation: inM 0.8s forwards;
+    animation: inM 0.8s forwards;
+}
+
+.navTrigger.active i:nth-child(3) {
+    -webkit-animation: inBtm 0.8s forwards;
+    animation: inBtm 0.8s forwards;
+}
+
+@-webkit-keyframes inM {
+    50% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(45deg);
+    }
+}
+
+@keyframes inM {
+    50% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(45deg);
+    }
+}
+
+@-webkit-keyframes outM {
+    50% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(45deg);
+    }
+}
+
+@keyframes outM {
+    50% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(45deg);
+    }
+}
+
+@-webkit-keyframes inT {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        -webkit-transform: translateY(9px) rotate(0deg);
+    }
+    100% {
+        -webkit-transform: translateY(9px) rotate(135deg);
+    }
+}
+
+@keyframes inT {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(9px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(9px) rotate(135deg);
+    }
+}
+
+@-webkit-keyframes outT {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        -webkit-transform: translateY(9px) rotate(0deg);
+    }
+    100% {
+        -webkit-transform: translateY(9px) rotate(135deg);
+    }
+}
+
+@keyframes outT {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(9px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(9px) rotate(135deg);
+    }
+}
+
+@-webkit-keyframes inBtm {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        -webkit-transform: translateY(-9px) rotate(0deg);
+    }
+    100% {
+        -webkit-transform: translateY(-9px) rotate(135deg);
+    }
+}
+
+@keyframes inBtm {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-9px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-9px) rotate(135deg);
+    }
+}
+
+@-webkit-keyframes outBtm {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        -webkit-transform: translateY(-9px) rotate(0deg);
+    }
+    100% {
+        -webkit-transform: translateY(-9px) rotate(135deg);
+    }
+}
+
+@keyframes outBtm {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-9px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-9px) rotate(135deg);
+    }
+}
+
+.affix {
+    padding: 0;
+    background-color: #111;
+}
+
+.myH2 {
+	text-align:center;
+	font-size: 4rem;
+}
+.myP {
+	text-align: justify;
+	padding-left:15%;
+	padding-right:15%;
+	font-size: 20px;
+}
+@media all and (max-width:700px){
+	.myP {
+		padding:2%;
+	}
+}
+.glass {
+    display: inline;
+    color: black;
+    text-align: left;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10vh;
+}
+
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <div class="logo">
+                <a href="#"><img src="static\assets\images\main_logo.png" height="50" width="50"></a>
+            </div>
+            <div id="mainListDiv" class="main_list">
+                <ul class="navlinks">
+                    <li><a href="http://127.0.0.1:5011">About</a></li>
+                    <li><a href="http://127.0.0.1:5008">Login</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <span class="navTrigger">
+                <i></i>
+                <i></i>
+                <i></i>
+            </span>
+        </div>
+    </nav>
+    <img src = "static\assets\images\login-img2.png" style = "height: 75%; width: auto; margin-top: 18vh; margin-left: 5vw;">
+    <section class="home" style="align-items: center; display: flex; color: white; float: right; margin-right: -70vw;">
+        <div style="text-align: center; display: block;" class = "glass">
+            <h2 class="welcome-sub-text" style = "margin-left: -1.5vw;"><span class = "text-black fw-bold" style = "font-size: larger;">Login</span></h2><br><br>
+            <form style = "margin-left: -70px;" action="/create" method = "post">
+                {% if error %}
+                <div class="alert alert-danger" role="alert" style="margin-bottom: 20px; width: 80%; color: black; margin-left: 65px;">
+                    {{ error }}
+                </div>
+                {% endif %}
+                <div>
+                    <label for = "mail" class="myP" style = "margin-right: 0px;">E-Mail</label>
+                    <input type = "email" id = "mail" name = "mail" required>
+                </div>
+                <div style = "margin-top: 20px;">
+                    <label for = "mode" class = "myP" style = "margin-right: 33px; margin-left: 0px;">Mode</label>
+                    <select name="mode" id="mode" required style = "padding-left: 5px;">
+                        <option value="" selected disabled>Please select mode</option>
+                        <option value="Admin">Admin</option>
+                        <option value="User">User</option>
+                    </select>
+                </div>
+                <div style = "margin-top: 20px;">
+                    <label for = "pw" class = "myP" style = "margin-left: -1.7vw;">Password</label>
+                    <input type = "password" id = "pw" name = "pw" required>
+                </div>
+                <br>
+                <div style="margin-top: 20px; margin-left: 70px; transform: scale(0.80);">
+                    <button type="submit" class="btn btn-primary btn-lg text-white mb-0 me-0" style = "color: white; cursor: pointer; font-size: larger;">Login</button>
+                    <button type="reset" class="btn btn-primary btn-lg text-white mb-0 me-0" style = "color: white; cursor: pointer; font-size: larger;">Clear</button>
+                </div>
+                <div style = "margin-top: 50px; float: right; margin-right: 0px;">
+                    <a href = "#" style = "font-size: medium;">Forgot password?</a>
+                </div>
+            </form>
+            <div style = "margin-top: 30px; float: right;">
+                <p style = "font-size: medium;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspDon't have an account? <a href = "http://127.0.0.1:5007">Register here</a></p>
+            </div>
+        </div>
+    </section>
+    
+<!-- Jquery needed -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
+
+<!-- Function used to shrink nav bar removing paddings and adding black background -->
+    <script>
+        // Call the function when the page loads
+        window.onload = displayError;
+        $(window).scroll(function() {
+            if ($(document).scrollTop() > 50) {
+                $('.nav').addClass('affix');
+                console.log("OK");
+            } else {
+                $('.nav').removeClass('affix');
+            }
+        });
+        $('.navTrigger').click(function () {
+            $(this).toggleClass('active');
+            console.log("Clicked menu");
+            $("#mainListDiv").toggleClass("show_list");
+            $("#mainListDiv").fadeIn();
+
+        });
+
+    </script>
+</body>
