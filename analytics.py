@@ -79,44 +79,22 @@ def get_user_name():
 @app.route('/')
 def analytics():
     data = fetch_expense_data()
-    
-    # Process data for plotting
     departments = [row[0] for row in data]
     total_expense = [row[1] for row in data]
-
-    # Create Plotly bar graph
     bar_graph = go.Bar(x=departments, y=total_expense, marker = dict(color = 'rgb(82, 205, 255)'))
-
-    # Plot layout
     layout = go.Layout(xaxis=dict(automargin = False), width = 1100, plot_bgcolor='rgba(0,0,0,0)', xaxis_showgrid=False, yaxis_showgrid=True, yaxis_gridcolor='rgb(244,245,247)', xaxis_gridcolor='rgb(200,200,200)')
-
-    # Combine data and layout into a figure
     graph = go.Figure(data=bar_graph, layout=layout)
     graphJSON = json.dumps(graph, cls = plotly.utils.PlotlyJSONEncoder)
 
     category_data = fetch_category_data()
     categories = [row[0] for row in category_data]
     category_expenses = [row[1] for row in category_data]
-
-    # Create Plotly doughnut chart
     doughnut_graph = go.Pie(labels=categories, values=category_expenses, hole=0.3)
-
-    # Plot layout for doughnut chart
     doughnut_layout = go.Layout(height = 600, width = 800, legend=dict(orientation="h", x=-0.5, y=1.5))
 
     doughnut_fig = go.Figure(data=[doughnut_graph], layout=doughnut_layout)
 
     doughnut_graphJSON = json.dumps(doughnut_fig, cls=plotly.utils.PlotlyJSONEncoder)
-
-    # day_data = fetch_expense_by_day_data()
-    # # Process data for plotting
-    # days_of_week = [row[0] for row in day_data]
-    # total_expense_by_day = [row[1] for row in day_data]
-    # dow = [days_of_week[5], days_of_week[1], days_of_week[0], days_of_week[4], days_of_week[2], days_of_week[6], days_of_week[3]]
-    # tebd = [total_expense_by_day[5], total_expense_by_day[1], total_expense_by_day[0], total_expense_by_day[4], total_expense_by_day[2], total_expense_by_day[6], total_expense_by_day[3]]
-    # daybar_graph = go.Bar(x=dow, y=tebd, marker=dict(color='rgb(82, 205, 255)'))
-    # daygraph = go.Figure(data=[daybar_graph], layout=layout)
-    # daygraphJSON = json.dumps(daygraph, cls=plotly.utils.PlotlyJSONEncoder)
     pname = get_user_name()
 
     return render_template('analytics.html', graphJSON = graphJSON, doughnut_graphJSON=doughnut_graphJSON, pname = pname)
