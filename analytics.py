@@ -18,7 +18,7 @@ def fetch_expense_data():
     cur.close()
     conn.close()
     return data
-
+    
 def fetch_category_data():
     conn = psycopg2.connect(database="expense_entry", user="postgres", password="nethra14", host="localhost", port="5432")
     cur = conn.cursor()
