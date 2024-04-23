@@ -36,15 +36,6 @@ def decline_report(report_id):
     update_approval_status(report_id, "Declined")
     return redirect(url_for('reqapprovals'))
 
-# def fetch_all_expense_data(report_id):
-#     conn = psycopg2.connect(database="expense_entry", user="postgres", password="nethra14", host="localhost", port="5432")
-#     cur = conn.cursor()
-#     cur.execute('''SELECT * FROM expense WHERE report_id = %s ORDER BY expense_id''', (report_id,))
-#     data = cur.fetchall()
-#     cur.close()
-#     conn.close()
-#     return data
-
 def fetch_all_approval_data():
     conn = psycopg2.connect(database="expense_entry", user="postgres", password="nethra14", host="localhost", port="5432")
     cur = conn.cursor()
@@ -59,15 +50,6 @@ def fetch_all_approval_data():
     cur.close()
     conn.close()
     return data
-
-# def fetch_report_data(report_id):
-#     conn = psycopg2.connect(database="expense_entry", user="postgres", password="nethra14", host="localhost", port="5432")
-#     cur = conn.cursor()
-#     cur.execute('''SELECT * FROM report WHERE report_id = %s''', (report_id,))
-#     data = cur.fetchone()  # Assuming report_id is unique, fetch one row
-#     cur.close()
-#     conn.close()
-#     return data
 
 @app.route('/')
 def reqapprovals():
